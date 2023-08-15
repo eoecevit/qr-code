@@ -13,16 +13,16 @@ app.get('/', function(req, res){
 	res.render('index',{QR_code:''});
 });
 
-app.post('/', function(req, res){
+app.post('/gen', function(req, res){
 	const url = req.body.url;
 	console.log(url);
 	if(url){
 		qr_code.toDataURL(url, function(err, src){
 			if(err){res.send(err); console.log(err);}
-			var file_path = "store/"+ Date.now() +".png";
+			var file_path = "store/"+ Date.now() +".svg";
 			qr_code.toFile(file_path,url, {
 			  color: {
-			    dark: '#000',  // Black dots
+			    dark: '#000',  // dots
 			    light: '#0000' // Transparent background
 			  }
 			});
